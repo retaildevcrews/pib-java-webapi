@@ -17,9 +17,9 @@
     </plugins>
   </reporting>
   <groupId>com.cse</groupId>
-  <artifactId>imdb</artifactId>
+  <artifactId>java-app</artifactId>
   <version>1.1.1</version>
-  <name>imdb-java</name>
+  <name>java-app</name>
   <description>Sample Java Application with Spring Boot</description>
   <properties>
     <java.version>11</java.version>

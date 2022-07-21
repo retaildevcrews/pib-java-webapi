@@ -1,4 +1,4 @@
-# Contributing to NGSA
+# Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
@@ -60,9 +60,11 @@ You can file new issues by providing the above information at the corresponding 
 
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-- Search the repository (https://github.com/retaildevcrews/ngsa-java/pulls) for an open or closed PR
+- Search the repository `https://github.com/[organization-name]/[repository-name]/pulls` for an open or closed PR
   that relates to your submission. You don't want to duplicate effort.
+
 - Make your changes in a new git fork:
+
 - Commit your changes using a descriptive commit message
 - Push your fork to GitHub:
 - In GitHub, create a pull request
@@ -71,8 +73,10 @@ Before you submit your Pull Request (PR) consider the following guidelines:
   - Rebase your fork and force push to your GitHub repository (this will update your Pull Request):
 
     ```shell
-    git rebase master -i
+
+    git rebase main -i
     git push -f
+
     ```
 
 That's it! Thank you for your contribution!

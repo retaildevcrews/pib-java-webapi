@@ -1,0 +1,19 @@
+###
+# root description and commands
+###
+
+name: kic
+short: Kubernetes in Codespaces CLI
+long: "Kubernetes in Codespaces CLI\n\n  A dynamic CLI for automating many Kubernetes development tasks"
+scriptCommands:
+- name: sync
+  short: Flux sync (reconcile)
+  path: sync
+
+commands:
+- name: env
+  hidden: true
+- name: new
+  hidden: true
+- name: targets
+  hidden: true
