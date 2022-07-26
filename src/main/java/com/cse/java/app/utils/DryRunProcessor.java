@@ -1,7 +1,6 @@
 package com.cse.java.app.utils;
 
 import com.cse.java.app.config.BuildConfig;
-import com.cse.java.app.services.volumes.IVolumeCosmosConfigService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class DryRunProcessor {
   @Autowired
   private BuildConfig buildConfig;
 
-  @Autowired
-  IVolumeCosmosConfigService volumeCosmosConfigService;
-
 
   private static final Logger logger = LogManager.getLogger(DryRunProcessor.class);
 
@@ -35,8 +31,7 @@ public class DryRunProcessor {
   public void onApplicationEvent(ContextRefreshedEvent event) {
     logger.info("Application Context has been fully started up");
     logger.info("All beans are now instantiated and ready to go!");
-    CommonUtils.validateCliDryRunOption(applicationArguments,
-            volumeCosmosConfigService, buildConfig);
+    CommonUtils.validateCliDryRunOption(applicationArguments, buildConfig);
   }
 
 }

@@ -1,7 +1,6 @@
 package com.cse.java.app.middleware;
 
-import com.cse.java.app.models.NgsaConfig;
-import com.cse.java.app.services.configuration.IConfigurationService;
+import com.cse.java.app.config.AppConfig;
 import com.cse.java.app.utils.CpuMonitor;
 import com.cse.java.app.utils.QueryUtils;
 import io.micrometer.core.instrument.DistributionSummary;
@@ -34,11 +33,10 @@ public class RequestLogger implements WebFilter {
 
   MeterRegistry promRegistry;
   @Autowired CpuMonitor cpuMonitor;
-  @Autowired NgsaConfig ngsaConfig;
-  @Autowired private IConfigurationService cfgSvc;
-  @Value("${region:dev}") private String ngsaRegion;
-  @Value("${zone:dev}") private String ngsaZone;
-  @Value("${request-log-level:INFO}") private String ngsaRequestLogger;
+  @Autowired AppConfig appConfig;
+  @Value("${region:dev}") private String appRegion;
+  @Value("${zone:dev}") private String appZone;
+  @Value("${request-log-level:INFO}") private String appRequestLogger;
 
   public RequestLogger(MeterRegistry registry) {
     promRegistry = registry;
@@ -51,7 +49,7 @@ public class RequestLogger implements WebFilter {
 
     // Setting logger level for this class only
     Configurator.setLevel(this.getClass().getTypeName(),
-        Level.getLevel(ngsaRequestLogger.toUpperCase()));
+        Level.getLevel(appRequestLogger.toUpperCase()));
   }
 
   /**
@@ -90,7 +88,7 @@ public class RequestLogger implements WebFilter {
       // compute request duration and get status code
       long duration = System.currentTimeMillis() - startTime;
       logData.put("Date", Instant.now().toString());
-      logData.put("LogName", "Ngsa.RequestLog");
+      logData.put("LogName", "JavaApp.RequestLog");
       logData.put("StatusCode", statusCode);
       logData.put("TTFB", duration); // Essentially ttfb in Java's case is the same as duraion
       logData.put("Duration", duration);
@@ -115,23 +113,23 @@ public class RequestLogger implements WebFilter {
           || mode.equals("Upsert")) {
         String[] promTags = {"code", QueryUtils.getPrometheusCode(statusCode),
             "cosmos", "True", // Hardcoding True since we only implemented Cosmos
-            "region", ngsaRegion,
-            "zone", ngsaZone,
+            "region", appRegion,
+            "zone", appZone,
             "mode", mode};
         // Using .getProcessCPULoad() direclty makes process_cpu_usage unusable
         // Not sure why
-        Gauge.builder("NgsaCpuPercent", cpuMonitor, x -> x.getCpuUsagePercent())
+        Gauge.builder("JavaCpuPercent", cpuMonitor, x -> x.getCpuUsagePercent())
             .description("CPU Percent Used")
             .register(promRegistry);
         DistributionSummary
-            .builder("NgsaAppDuration")
-            .description("Histogram of NGSA App request duration")
+            .builder("JavaAppDuration")
+            .description("Histogram of Java App request duration")
             .tags(promTags)
             .register(promRegistry) // it won't not register everytime
             .record(duration);
         DistributionSummary
-            .builder("NgsaAppSummary")
-            .description("Summary of NGSA App request duration")
+            .builder("JavaAppSummary")
+            .description("Summary of Java App request duration")
             .tags(promTags)
             .register(promRegistry) // it won't not register everytime
             .record(duration);
@@ -140,9 +138,9 @@ public class RequestLogger implements WebFilter {
       logData.put("Category", categoryAndMode[0]);
       logData.put("SubCategory", categoryAndMode[1]);
       logData.put("Mode", mode);
-      logData.put("Zone", ngsaZone);
-      logData.put("Region", ngsaRegion);
-      logData.put("CosmosName", cfgSvc.getConfigEntries().getCosmosName());
+      logData.put("Zone", appZone);
+      logData.put("Region", appRegion);
+     
       // log results to console
       logger.info(logData.toString());
     });

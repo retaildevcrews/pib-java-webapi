@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
-
 @RestController
 public class VersionController {
-  private static final Logger logger =   LogManager.getLogger(VersionController.class);
+
+  private static final Logger logger = LogManager.getLogger(VersionController.class);
 
   @Autowired
   ApplicationContext context;
@@ -26,29 +26,27 @@ public class VersionController {
   @Autowired
   CommonUtils commonUtils;
 
-  @Autowired 
+  @Autowired
   Environment environment;
 
   /**
    * Returns the application build version.
    *
-   * @param response ServerHttpResponse passed into the alternate version handler by Spring
-   * @return Mono{@literal <}Map{@literal <}String, 
-   *      String{@literal <}{@literal <} container the build number
-  */
-  @GetMapping(name = "Java App Version Controller",
-      value = "/version",
-      produces = MediaType.TEXT_PLAIN_VALUE)
+   * @param response ServerHttpResponse passed into the alternate version handler
+   *                 by Spring
+   * @return Mono{@literal <}Map{@literal <}String, String{@literal <}{@literal <}
+   *         container the build number
+   */
+  @GetMapping(name = "Java App Version Controller", value = "/version", produces = MediaType.TEXT_PLAIN_VALUE)
   public Mono<String> version(ServerHttpResponse response) {
     try {
       response.setStatusCode(HttpStatus.OK);
       String version = context.getBean(BuildConfig.class).getBuildVersion();
-      
+
       return Mono.just(version);
     } catch (Exception ex) {
       logger.warn("Error received in VersionController", ex);
-      return Mono.error(new ResponseStatusException(
-        HttpStatus.INTERNAL_SERVER_ERROR, "version Error"));
+      return Mono.error(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "version Error"));
     }
   }
 }

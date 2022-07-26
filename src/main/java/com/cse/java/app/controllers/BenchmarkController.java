@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +22,14 @@ import reactor.core.publisher.Mono;
     MediaType.APPLICATION_PROBLEM_JSON_VALUE})
 @Api(tags = "Benchmark")
 public class BenchmarkController {
+  
   private static final Logger logger = LogManager.getLogger(BenchmarkController.class);
+  
   private final String benchmarkString;
+  
   @Autowired
   ParameterValidator validator;
+  
   @Autowired
   InvalidParameterResponses invalidParameterResponses;
 
@@ -38,13 +41,11 @@ public class BenchmarkController {
 
   /** getBenchmark. */
   @GetMapping(value = "/{size}")
-  @SuppressWarnings({"squid:S2629", "squid:S1612"})
   public Mono<ResponseEntity<String>> getBenchmark(
       @ApiParam(value = "The size of the benchmark data ( 0 < size <= 1MB )",
                 example = "214", required = true)
       @PathVariable("size")
-      String benchmarkSizeStr,
-      ServerHttpRequest request
+      String benchmarkSizeStr
   ) {
 
     if (Boolean.TRUE == validator.isValidBenchmarkSize(benchmarkSizeStr, Constants.MAX_BENCH_STR_SIZE)) {
@@ -56,7 +57,7 @@ public class BenchmarkController {
     } else {
 
       String invalidResponse = invalidParameterResponses
-          .invalidBenchmarkSizeResponse(request.getURI().getPath());
+          .invalidBenchmarkSizeResponse();
       logger.warn("Benchmark data size parameter should be 0 < size <= 1MiB (1048576)");
 
       return Mono.just(ResponseEntity.badRequest()

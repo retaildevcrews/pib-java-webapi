@@ -1,15 +1,13 @@
-package com.cse.java.app.models;
+package com.cse.java.app.config;
 
-import com.cse.java.app.config.BuildConfig;
-import com.cse.java.app.config.NgsaConfigProperties;
 import javax.validation.Valid;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(NgsaConfigProperties.class)
-public class NgsaConfig {
+@EnableConfigurationProperties(AppConfigProperties.class)
+public class AppConfig {
   @Bean
   public BuildConfig buildConfig() {
     return new BuildConfig();
@@ -17,7 +15,7 @@ public class NgsaConfig {
 
   @Bean
   @Valid
-  public NgsaConfigProperties ngsaConfigProperties() {
-    return new NgsaConfigProperties();
+  public AppConfigProperties appConfigProperties() {
+    return new AppConfigProperties();
   }
 }

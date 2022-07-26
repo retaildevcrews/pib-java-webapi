@@ -16,11 +16,15 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping(path = "/readyz")
 public class ReadyzController {
+
   private static final Logger logger = LogManager.getLogger(ReadyzController.class);
+
   @Autowired
   ApplicationContext context;
+
   @Autowired
   CommonUtils commonUtils;
+
   @Autowired
   Environment environment;
 

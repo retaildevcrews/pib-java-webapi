@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 
 @ConfigurationProperties(prefix = "")
 @Validated
-public class NgsaConfigProperties {
+public class AppConfigProperties {
   @Valid
   @NotBlank
   @Getter @Setter

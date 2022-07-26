@@ -1,9 +1,6 @@
 package com.cse.java.app.utils;
 
-import com.cse.java.app.Constants;
 import com.cse.java.app.config.BuildConfig;
-import com.cse.java.app.services.volumes.CosmosConfigs;
-import com.cse.java.app.services.volumes.IVolumeCosmosConfigService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -96,14 +93,13 @@ public class CommonUtils {
    * validate cli dry run option.
    */
   public static void validateCliDryRunOption(ApplicationArguments applicationArguments,
-                                              IVolumeCosmosConfigService volumeCosmosConfigService,
                                               BuildConfig buildConfig) {
     if (applicationArguments != null) {
       SimpleCommandLinePropertySource commandLinePropertySource =
           new SimpleCommandLinePropertySource(applicationArguments.getSourceArgs());
       Arrays.stream(commandLinePropertySource.getPropertyNames()).forEach(s -> {
         if (s.equals("dry-run") || s.equals("d")) {
-          printDryRunParameters(volumeCosmosConfigService, buildConfig);
+          printDryRunParameters(buildConfig);
           System.exit(0);
         }
       });
@@ -112,26 +108,9 @@ public class CommonUtils {
 
   @SuppressFBWarnings({"NP_UNWRITTEN_FIELD", "UWF_UNWRITTEN_FIELD"})
   @SuppressWarnings ("squid:S106") // System.out needed to print usage
-  static void printDryRunParameters(IVolumeCosmosConfigService volumeCosmosConfigService,
-                                    BuildConfig buildConfig) {
+  static void printDryRunParameters(BuildConfig buildConfig) {
     System.out.println(MessageFormat.format("Version                    {0}",
         buildConfig.getBuildVersion()));
-    
-    CosmosConfigs cosConf = volumeCosmosConfigService.getAllCosmosConfigsFromVolume(environment.getProperty(Constants.SECRETS_VOLUME_ARGUMENT));
-
-    System.out.println(MessageFormat.format("Cosmos Server              {0}",
-            cosConf.getCosmosUrl()));
-
-    String cosmosKey = cosConf.getCosmosKey();
-
-    System.out.println(MessageFormat.format("Cosmos Key                 {0}",
-        cosmosKey == null || cosmosKey.isEmpty() ? "(not set)".length() : cosmosKey.length()));
-
-    System.out.println(MessageFormat.format("Cosmos Database            {0}",
-            cosConf.getCosmosDatabase()));
-
-    System.out.println(MessageFormat.format("Cosmos Collection          {0}",
-            cosConf.getCosmosCollection()));
   }
 
   /**
