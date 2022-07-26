@@ -10,15 +10,15 @@ data:
   dashboardProvider.yaml: |
     apiVersion: 1
     providers:
-    - name: csapp
+    - name: java-app
       options:
-        path: /var/lib/grafana/dashboards/csapp
+        path: /var/lib/grafana/dashboards/java-app
       orgId: 1
       type: file
       disableDeletion: false
-    - name: dotnet
+    - name: java
       options:
-        path: /var/lib/grafana/dashboards/dotnet
+        path: /var/lib/grafana/dashboards/java
       orgId: 1
       type: file
       disableDeletion: false

@@ -99,13 +99,13 @@ data:
         static_configs:
           - targets: ['kube-state-metrics.kube-system.svc.cluster.local:8080']
 
-      - job_name: 'csapp'
+      - job_name: 'java-app'
         static_configs:
-          - targets: [ 'csapp.csapp.svc.cluster.local:8080' ]
+          - targets: [ 'java-app.java-app.svc.cluster.local:8080' ]
 
       - job_name: 'webv'
         static_configs:
-          - targets: [ 'webv.csapp.svc.cluster.local:8080' ]
+          - targets: [ 'webv.java-app.svc.cluster.local:8080' ]
 
       - job_name: 'kubernetes-cadvisor'
 

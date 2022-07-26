@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-dashboards-dotnet
+  name: grafana-dashboards-java
   namespace: monitoring
   labels:
     app: grafana
 data:
-  dotnet.json: |-
+  java.json: |-
     {
       "annotations": {
         "list": [
@@ -81,7 +81,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(CSAppDuration_bucket[$interval])) by (le)",
+              "expr": "sum(increase(JavaAppDuration_bucket[$interval])) by (le)",
               "format": "heatmap",
               "interval": "",
               "intervalFactor": 1,
@@ -185,7 +185,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(dotnet_collection_count_total{job!=\"kubernetes-pods\"}[$interval])) by (job)",
+              "expr": "sum(increase(java_collection_count_total{job!=\"kubernetes-pods\"}[$interval])) by (job)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -291,7 +291,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "dotnet_total_memory_bytes{job!=\"kubernetes-pods\"} /1024/1024",
+              "expr": "java_total_memory_bytes{job!=\"kubernetes-pods\"} /1024/1024",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -810,7 +810,7 @@ data:
         ]
       },
       "timezone": "",
-      "title": "dotnet",
-      "uid": "dotnet",
+      "title": "java",
+      "uid": "java",
       "version": 1
     }

@@ -52,10 +52,10 @@ spec:
           - name: grafana-dashboard-provider
             mountPath: /etc/grafana/provisioning/dashboards/dashboardProvider.yaml
             subPath: dashboardProvider.yaml
-          - name: dashboards-csapp
-            mountPath: /var/lib/grafana/dashboards/csapp
-          - name: dashboards-dotnet
-            mountPath: /var/lib/grafana/dashboards/dotnet
+          - name: dashboards-java-app
+            mountPath: /var/lib/grafana/dashboards/java-app
+          - name: dashboards-java
+            mountPath: /var/lib/grafana/dashboards/java
       volumes:
         - name: grafana-storage
           hostPath:
@@ -70,12 +70,12 @@ spec:
         - name: grafana-dashboard-provider
           configMap:
             name: grafana-dashboard-provider
-        - name: dashboards-csapp
+        - name: dashboards-java-app
           configMap:
-            name: grafana-dashboards-csapp
-        - name: dashboards-dotnet
+            name: grafana-dashboards-java-app
+        - name: dashboards-java
           configMap:
-            name: grafana-dashboards-dotnet
+            name: grafana-dashboards-java
 
 ---
 

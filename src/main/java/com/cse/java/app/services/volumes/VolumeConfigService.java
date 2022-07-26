@@ -61,7 +61,7 @@ public class VolumeConfigService {
       } else {
         filePath = Path.of(volume + "/" + key);
         if (!Files.exists(filePath)) {
-          throw new AppException("Secret not found for key");
+          throw new AppException("Secret not found");
         } else {
           try {
             return new String(Files.readAllBytes(filePath));
