@@ -665,10 +665,8 @@ data:
       "style": "dark",
       "tags": [
         "prometheus-net",
-        "net",
         "prometheus",
-        ".net",
-        ".net core"
+        "java"
       ],
       "templating": {
         "list": [
