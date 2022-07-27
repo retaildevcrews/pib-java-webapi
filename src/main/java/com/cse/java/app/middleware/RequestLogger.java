@@ -112,7 +112,6 @@ public class RequestLogger implements WebFilter {
           || mode.equals("Delete")
           || mode.equals("Upsert")) {
         String[] promTags = {"code", QueryUtils.getPrometheusCode(statusCode),
-            "cosmos", "True", // Hardcoding True since we only implemented Cosmos
             "region", appRegion,
             "zone", appZone,
             "mode", mode};
@@ -123,6 +122,7 @@ public class RequestLogger implements WebFilter {
             .register(promRegistry);
         DistributionSummary
             .builder("JavaAppDuration")
+            .publishPercentileHistogram()
             .description("Histogram of Java App request duration")
             .tags(promTags)
             .register(promRegistry) // it won't not register everytime
@@ -130,6 +130,7 @@ public class RequestLogger implements WebFilter {
         DistributionSummary
             .builder("JavaAppSummary")
             .description("Summary of Java App request duration")
+            .publishPercentileHistogram()
             .tags(promTags)
             .register(promRegistry) // it won't not register everytime
             .record(duration);

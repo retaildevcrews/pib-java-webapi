@@ -22,7 +22,12 @@ public class QueryUtils {
     String mode;
     String subCategory;
     String path = request.getURI().getPath().toLowerCase();
-    if (path.startsWith("/healthz")) {
+    
+    if (path.startsWith("/api/benchmark")) {
+      category = "API";
+      subCategory = "API";
+      mode = "API";
+    } else if (path.startsWith("/healthz") || path.startsWith("/readyz")) {
       category = "Healthz";
       subCategory = "Healthz";
       mode = "Healthz";
