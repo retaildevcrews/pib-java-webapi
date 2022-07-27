@@ -107,34 +107,29 @@ public class RequestLogger implements WebFilter {
       String[] categoryAndMode = QueryUtils.getCategoryAndMode(serverWebExchange.getRequest());
       String mode = categoryAndMode[2];
 
-      if (mode.equals("Direct")
-          || mode.equals("Query")
-          || mode.equals("Delete")
-          || mode.equals("Upsert")) {
-        String[] promTags = {"code", QueryUtils.getPrometheusCode(statusCode),
-            "region", appRegion,
-            "zone", appZone,
-            "mode", mode};
-        // Using .getProcessCPULoad() direclty makes process_cpu_usage unusable
-        // Not sure why
-        Gauge.builder("JavaCpuPercent", cpuMonitor, x -> x.getCpuUsagePercent())
-            .description("CPU Percent Used")
-            .register(promRegistry);
-        DistributionSummary
-            .builder("JavaAppDuration")
-            .publishPercentileHistogram()
-            .description("Histogram of Java App request duration")
-            .tags(promTags)
-            .register(promRegistry) // it won't not register everytime
-            .record(duration);
-        DistributionSummary
-            .builder("JavaAppSummary")
-            .description("Summary of Java App request duration")
-            .publishPercentileHistogram()
-            .tags(promTags)
-            .register(promRegistry) // it won't not register everytime
-            .record(duration);
-      }
+     
+      String[] promTags = {"code", QueryUtils.getPrometheusCode(statusCode),
+          "region", appRegion,
+          "zone", appZone,
+          "mode", mode};
+      // Using .getProcessCPULoad() direclty makes process_cpu_usage unusable
+      // Not sure why
+      Gauge.builder("JavaCpuPercent", cpuMonitor, x -> x.getCpuUsagePercent())
+          .description("CPU Percent Used")
+          .register(promRegistry);
+      DistributionSummary
+          .builder("JavaAppDuration")
+          .description("Histogram of Java App request duration")
+          .tags(promTags)
+          .register(promRegistry) // it won't not register everytime
+          .record(duration);
+      DistributionSummary
+          .builder("JavaAppSummary")
+          .description("Summary of Java App request duration")
+          .tags(promTags)
+          .register(promRegistry) // it won't not register everytime
+          .record(duration);
+      
 
       logData.put("Category", categoryAndMode[0]);
       logData.put("SubCategory", categoryAndMode[1]);
