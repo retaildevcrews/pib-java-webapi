@@ -81,7 +81,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(JavaAppDuration_bucket[$interval])) by (le)",
+              "expr": "sum(increase(JAppDuration_bucket[$interval])) by (le)",
               "format": "heatmap",
               "interval": "",
               "intervalFactor": 1,

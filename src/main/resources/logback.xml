@@ -1,4 +1,3 @@
 <configuration>
-    <logger name="com.azure.data.cosmos" level="error"/>
-    <logger name="com.cse.java" level="warn" />
+    <logger name="com.cse.app" level="warn" />
 </configuration>

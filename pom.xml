@@ -190,7 +190,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-							<mainClass>com.cse.java.app.JavaApplication</mainClass>
+							<mainClass>com.cse.app.JavaApplication</mainClass>
               <addDefaultImplementationEntries>false</addDefaultImplementationEntries>
             </manifest>
             <manifestEntries>
