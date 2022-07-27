@@ -17,12 +17,6 @@ public class InvalidParameterResponses {
       "The parameter 'benchmarkSize' should be a number greater than 0 and less than 1024*1024"
       );
   
-  private static final String INVALID_SECRET_KEY_ERROR = String.format(
-      VALIDATION_ERROR_TEMPLATE,
-      "key",
-      "The parameter 'key' cannot be empty"
-      );
-
   InvalidParameterResponses() {
   }
 
@@ -41,8 +35,16 @@ public class InvalidParameterResponses {
     return response(BENCHMARK_SIZE_ERROR);
   }
   
-  public String invalidSecretKey() {
-    return response(INVALID_SECRET_KEY_ERROR);
+  public String invalidSecretKey(String message) {
+    return secretNotFoundResponse(message);
+  }
+  
+  private String secretNotFoundResponse(String message) {
+    return "{\n"
+      + "  \"title\": \"Secret not found\",\n"
+      + "  \"detail\": \"" + message + "\",\n"
+      + "  \"status\": 404"
+      + "}";
   }
   
 }

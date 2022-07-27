@@ -664,7 +664,7 @@ data:
       "schemaVersion": 30,
       "style": "dark",
       "tags": [
-        "prometheus-net",
+        "prometheus-java",
         "prometheus",
         "java"
       ],

@@ -39,14 +39,5 @@ public class ParameterValidator {
     }
     return true;
   }
-  
-  /** isInvalidSecret. */
-  //jPlaceholder for adding validations
-  public Boolean isValidSecretKey(String key) {
-    if (!StringUtils.isEmpty(key)) {
-      return true;
-    }
-    return false;
-  }
-
+ 
 }

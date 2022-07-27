@@ -44,7 +44,6 @@
 									"title": "Parameter validation error",
 									"detail": "One or more invalid parameters were specified.",
 									"status": 400,
-									"instance": "/api/benchmark/0",
 									"validationErrors": [{
 										"code": "InvalidValue",
 										"target": "benchmarkSize",
@@ -87,13 +86,14 @@
 						}
 					},
 					"404": {
-						"description": "Secret Not Found",
+						"description": "Invalid Secret Key",
 						"content": {
-							"text/plain": {
-								"schema": {
-									"type": "string"
-								},
-								"example": "secret not found"
+							"application/json": {
+								"example": {
+									"title": "Secret not found",
+									"detail": "Secret not found.",
+									"status": 404
+								}
 							}
 						}
 					}

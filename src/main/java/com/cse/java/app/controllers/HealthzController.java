@@ -99,7 +99,11 @@ public class HealthzController {
   /** buildHelthCheckChain build the chain of calls using concatWith. */
   Mono<List<Map<String, Object>>> buildHealthCheckChain() {
     timeList.add(System.currentTimeMillis());
-    // TODO Add Thread.sleep() to simulate real time
+    try {
+      Thread.sleep(10);
+    } catch (Exception e) {
+      logger.error("failed to wait 10 ms");
+    }
     Map<String, Object> benchmarkMono = buildResultsDictionary("getBenchmark", getElapsedAndUpdateStart(), 200L);
     return Mono.just(new ArrayList<>(Arrays.asList(benchmarkMono)));
   }
