@@ -6,6 +6,10 @@ commands:
 - name: build
   short: Build local apps
   scriptCommands:
+    - name: all
+      short: Build java-app and WebV
+      path: build/all
+
     - name: java-app
       short: Build JavaApp
       path: build/app

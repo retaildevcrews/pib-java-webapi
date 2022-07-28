@@ -30,5 +30,6 @@ RUN addgroup -g 4120 ngsa && \
 USER ngsa
 
 COPY --from=dependencies /app/target/java-app.jar app.jar
+COPY --from=dependencies /app/secrets/ secrets
 EXPOSE 8080
 ENTRYPOINT ["java",  "-jar", "/app/app.jar"]

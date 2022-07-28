@@ -113,13 +113,13 @@ public class RequestLogger implements WebFilter {
           .register(promRegistry);
       DistributionSummary
           .builder("JAppDuration")
-          .description("Histogram of Java App request duration")
+          .description("Histogram of JavaApp request duration")
           .tags(promTags)
           .register(promRegistry) // it won't not register everytime
           .record(duration);
       DistributionSummary
           .builder("JAppSummary")
-          .description("Summary of Java App request duration")
+          .description("Summary of JavaApp request duration")
           .tags(promTags)
           .register(promRegistry) // it won't not register everytime
           .record(duration);

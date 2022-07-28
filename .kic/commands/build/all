@@ -1,0 +1,13 @@
+
+
+#!/bin/bash
+
+kic build java-app
+kic build webv
+
+if [ "$1" == "--deploy" ]
+then
+    kic deploy bootstrap
+    kic deploy java-app
+    kic deploy webv
+fi

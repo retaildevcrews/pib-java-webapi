@@ -41,9 +41,11 @@
 						"content": {
 							"application/json": {
 								"example": {
+								    "type": "ParameterValidationError",
 									"title": "Parameter validation error",
 									"detail": "One or more invalid parameters were specified.",
 									"status": 400,
+									"instance": "/api/benchmark/0",
 									"validationErrors": [{
 										"code": "InvalidValue",
 										"target": "benchmarkSize",
@@ -86,18 +88,17 @@
 						}
 					},
 					"404": {
-						"description": "Invalid Secret Key",
+						"description": "Secret Not Found",
 						"content": {
-							"application/json": {
-								"example": {
-									"title": "Secret not found",
-									"detail": "Secret not found.",
-									"status": 404
-								}
-							}
-						}
-					}
-				}
+							"text/plain": {
+				                "schema": {
+				                  "type": "string"
+				                },
+				                "example": "secret not found"
+				              }
+						 }
+					 }
+				 }
 			}
 		},
 		"{{url-prefix}}/readyz": {

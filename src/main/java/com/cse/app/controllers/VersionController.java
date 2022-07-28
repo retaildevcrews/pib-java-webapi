@@ -37,7 +37,7 @@ public class VersionController {
    * @return Mono{@literal <}Map{@literal <}String, String{@literal <}{@literal <}
    *         container the build number
    */
-  @GetMapping(name = "Java App Version Controller", value = "/version", produces = MediaType.TEXT_PLAIN_VALUE)
+  @GetMapping(name = "JavaApp Version Controller", value = "/version", produces = MediaType.TEXT_PLAIN_VALUE)
   public Mono<String> version(ServerHttpResponse response) {
     try {
       response.setStatusCode(HttpStatus.OK);

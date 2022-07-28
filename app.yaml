@@ -1,0 +1,19 @@
+template: pib-service
+deployments:
+  dev:
+    target: dev
+    values:
+      app: java-app
+      name: java-app
+      namespace: java-app
+      workspace: java-app
+      image: ghcr.io/cse-labs/java-app:latest
+      targets: []
+      port: 8080
+      nodePort: 30080
+      cpuLimit: 500m
+      memoryLimit: 512Mi
+      cpuRequest: 300m
+      memoryRequest: 512Mi
+      readinessProbe: /readyz
+      livenessProbe: /healthz

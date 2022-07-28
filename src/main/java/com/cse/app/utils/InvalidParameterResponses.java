@@ -17,34 +17,26 @@ public class InvalidParameterResponses {
       "The parameter 'benchmarkSize' should be a number greater than 0 and less than 1024*1024"
       );
   
+  private static final String INVALID_PARAMETER__TYPE = "ParameterValidationError";
+  
   InvalidParameterResponses() {
   }
 
-  private String response(String validationErrorsBody) {
+  private String response(String type, String instance, String validationErrorsBody) {
     return "{\n"
+      + "  \"type\": \"" + type + "\",\n"
       + "  \"title\": \"Parameter validation error\",\n"
       + "  \"detail\": \"One or more invalid parameters were specified.\",\n"
       + "  \"status\": 400,\n"
+      + "  \"instance\": \"" + instance + "\",\n"
       + "  \"validationErrors\": [\n"
       +    validationErrorsBody + "\n"
       + "  ]\n"
       + "}";
   }
 
-  public String invalidBenchmarkSizeResponse() {
-    return response(BENCHMARK_SIZE_ERROR);
-  }
-  
-  public String invalidSecretKey(String message) {
-    return secretNotFoundResponse(message);
-  }
-  
-  private String secretNotFoundResponse(String message) {
-    return "{\n"
-      + "  \"title\": \"Secret not found\",\n"
-      + "  \"detail\": \"" + message + "\",\n"
-      + "  \"status\": 404"
-      + "}";
+  public String invalidBenchmarkSizeResponse(String instance) {
+    return response(INVALID_PARAMETER__TYPE, instance, BENCHMARK_SIZE_ERROR);
   }
   
 }

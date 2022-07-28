@@ -6,6 +6,10 @@ commands:
 - name: deploy
   short: Deploy local apps
   scriptCommands:
+    - name: all
+      short: Deploy bootstrap, java-app, and webv
+      path: deploy/all
+
     - name: java-app
       short: Deploy JavaApp
       path: deploy/app

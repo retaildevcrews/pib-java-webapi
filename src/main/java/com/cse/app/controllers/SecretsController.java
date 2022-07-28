@@ -42,10 +42,9 @@ public class SecretsController {
       return Mono.justOrEmpty(ResponseEntity.ok(secret));
     } catch (Exception ex) {
       logger.warn(MessageFormat.format("SecretsControllerException {0}", ex.getMessage()));
-      String invalidResponse = invalidParameterResponses.invalidSecretKey(ex.getMessage());
       logger.error("Invalid secret key");
       return Mono
-          .just(ResponseEntity.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_PROBLEM_JSON).body(invalidResponse));
+          .just(ResponseEntity.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_PROBLEM_JSON).body("secret not found"));
     }
   }
 }
