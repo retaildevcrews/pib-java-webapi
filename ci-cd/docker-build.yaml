@@ -36,7 +36,7 @@ jobs:
 
     - name: Docker Build
       run: |
-        docker build java-app -t image
+        DOCKER_BUILDKIT=1 docker build java-app -t image
 
     - name: Docker Tag and Push
       run: |

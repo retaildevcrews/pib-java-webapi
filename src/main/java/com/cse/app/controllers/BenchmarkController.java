@@ -44,6 +44,7 @@ public class BenchmarkController {
 
   /** getBenchmark. */
   @GetMapping(value = "/{size}")
+  @SuppressWarnings({"squid:S2629", "squid:S1612"})
   public Mono<ResponseEntity<String>> getBenchmark(
       @ApiParam(value = "The size of the benchmark data ( 0 < size <= 1MB )",
                 example = "214", required = true)

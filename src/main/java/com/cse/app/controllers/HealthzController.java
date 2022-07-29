@@ -85,7 +85,7 @@ public class HealthzController {
     }
 
     ieTfResult.put("serviceId", environment.getProperty("service.name"));
-    ieTfResult.put("description", "Test App Health Check");
+    ieTfResult.put("description", "Java-App Health Check");
     ieTfResult.put("instance", webInstanceRole);
     ieTfResult.put("version", buildConfig.getBuildVersion());
 

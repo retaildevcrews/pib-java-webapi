@@ -35,12 +35,13 @@ public class VersionController {
   /**
    * Returns the application build version.
    *
-   * @param response ServerHttpResponse passed into the alternate version handler
-   *                 by Spring
-   * @return Mono{@literal <}Map{@literal <}String, String{@literal <}{@literal <}
-   *         container the build number
-   */
-  @GetMapping(name = "Java-App Version Controller", value = "/version", produces = MediaType.TEXT_PLAIN_VALUE)
+   * @param response ServerHttpResponse passed into the alternate version handler by Spring
+   * @return Mono{@literal <}Map{@literal <}String, 
+   *      String{@literal <}{@literal <} container the build number
+  */
+  @GetMapping(name = "Java-App Version Controller",
+      value = "/version",
+      produces = MediaType.TEXT_PLAIN_VALUE)
   public Mono<String> version(ServerHttpResponse response) {
     try {
       response.setStatusCode(HttpStatus.OK);

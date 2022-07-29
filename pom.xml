@@ -5,7 +5,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.3.4.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+	<relativePath /> <!-- lookup parent from repository -->
 </parent>
   <reporting>
     <plugins>
@@ -17,10 +17,10 @@
     </plugins>
   </reporting>
   <groupId>com.cse</groupId>
-	<artifactId>java-app</artifactId>
+  <artifactId>java-app</artifactId>
   <version>1.1.1</version>
-	<name>java-app</name>
-	<description>Sample Java Application with Spring Boot</description>
+  <name>java-app</name>
+  <description>Sample Java Application with Spring Boot</description>
   <properties>
     <java.version>11</java.version>
     <azure.version>2.2.0</azure.version>
@@ -34,7 +34,6 @@
   </repositories>
   <dependencyManagement>
     <dependencies>
-      
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -133,7 +132,6 @@
       <artifactId>spotbugs-annotations</artifactId>
       <version>4.1.2</version>
     </dependency>
-    
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
@@ -190,7 +188,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-							<mainClass>com.cse.app.JavaApplication</mainClass>
+			  <mainClass>com.cse.app.JavaApplication</mainClass>
               <addDefaultImplementationEntries>false</addDefaultImplementationEntries>
             </manifest>
             <manifestEntries>
@@ -220,7 +218,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-					<skip>false</skip>
+			<skip>false</skip>
         </configuration>
         <executions>
           <execution>
