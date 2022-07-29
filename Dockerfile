@@ -16,6 +16,7 @@ ENV PATH=/app/apache-maven/bin:${PATH}
 FROM base AS dependencies
 COPY . /app
 
+#cache mount volume enabled for faster build
 RUN --mount=type=cache,target=/root/.m2,rw mvn clean package -DskipTests --no-transfer-progress
 
 #
