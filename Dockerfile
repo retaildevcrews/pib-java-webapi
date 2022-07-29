@@ -16,7 +16,7 @@ ENV PATH=/app/apache-maven/bin:${PATH}
 FROM base AS dependencies
 COPY . /app
 
-RUN mvn clean package -DskipTests --no-transfer-progress 
+RUN --mount=type=cache,target=/root/.m2,rw mvn clean package -DskipTests --no-transfer-progress
 
 #
 # ---- Release App ----
@@ -30,6 +30,5 @@ RUN addgroup -g 4120 ngsa && \
 USER ngsa
 
 COPY --from=dependencies /app/target/java-app.jar app.jar
-COPY --from=dependencies /app/secrets/ secrets
 EXPOSE 8080
 ENTRYPOINT ["java",  "-jar", "/app/app.jar"]

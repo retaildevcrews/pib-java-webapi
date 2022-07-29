@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +43,7 @@ public class SecretsController {
       logger.warn(MessageFormat.format("SecretsControllerException {0}", ex.getMessage()));
       logger.error("Invalid secret key");
       return Mono
-          .just(ResponseEntity.status(HttpStatus.NOT_FOUND).contentType(MediaType.APPLICATION_PROBLEM_JSON).body("secret not found"));
+          .just(ResponseEntity.status(HttpStatus.NOT_FOUND).body("secret not found"));
     }
   }
 }

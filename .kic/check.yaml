@@ -7,7 +7,7 @@ commands:
   short: Check local apps
   scriptCommands:
     - name: java-app
-      short: Check JavaApp
+      short: Check Java-App
       path: check/app
 
     - name: webv

@@ -6,7 +6,7 @@
 echo "Checking Heartbeat"
 kic check heartbeat
 
-echo "Checking JavaApp"
+echo "Checking Java-App"
 kic check java-app
 
 echo "Checking WebV"
