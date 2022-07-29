@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 package com.cse.app;
 
 /**
@@ -11,6 +14,11 @@ public final class Constants {
 
 
   public static final String SECRETS_VOLUME_ARGUMENT = "secrets-volume";
+  public static final String SECRETS_VOLUME_NOT_FOUND = "Volume does not exist.";
+  public static final String SECRETS_NOT_FOUND = "Secret not found.";
+  public static final String SECRETS_VOLUME_EMPTY = "Volume is empty.";
+
+
  
   private Constants() {
     // private constructor to hide public constructor

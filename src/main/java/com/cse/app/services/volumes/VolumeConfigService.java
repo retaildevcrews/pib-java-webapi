@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 package com.cse.app.services.volumes;
 
 import com.cse.app.Constants;
@@ -25,6 +28,7 @@ public class VolumeConfigService {
   Environment environment;
 
   /**
+   * Currently this function is not used anywhere.
    * Get all the secrets from a given volume.
    * @throws AppException if volume not found
    */
@@ -33,12 +37,12 @@ public class VolumeConfigService {
     String volume = environment.getProperty(Constants.SECRETS_VOLUME_ARGUMENT);
 
     if (CommonUtils.isNullWhiteSpace(volume)) {
-      throw new AppException("Volume is empty.");
+      throw new AppException(Constants.SECRETS_VOLUME_EMPTY);
     }
 
     Path filePath = Paths.get(volume);
     if (!Files.exists(filePath)) {
-      throw new AppException("Volume does not exist");
+      throw new AppException(Constants.SECRETS_VOLUME_NOT_FOUND);
     }
     return getAllSecrets(volume);
 
@@ -57,11 +61,11 @@ public class VolumeConfigService {
       Path filePath = Paths.get(volume);
 
       if (!Files.exists(filePath)) {
-        throw new AppException("Volume does not exist.");
+        throw new AppException(Constants.SECRETS_VOLUME_NOT_FOUND);
       } else {
         filePath = Path.of(volume + "/" + key);
         if (!Files.exists(filePath)) {
-          throw new AppException("Secret not found.");
+          throw new AppException(Constants.SECRETS_NOT_FOUND);
         } else {
           try {
             return new String(Files.readAllBytes(filePath));
@@ -72,7 +76,7 @@ public class VolumeConfigService {
       }
 
     } else {
-      throw new AppException("Volume is empty.");
+      throw new AppException(Constants.SECRETS_VOLUME_EMPTY);
     }
     return val;
   }

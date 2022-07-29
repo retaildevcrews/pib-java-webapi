@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 package com.cse.app.utils;
 
 import com.cse.app.config.BuildConfig;
@@ -128,8 +131,6 @@ public class CommonUtils {
         + "\t--version                                 \t\t Show version information\r\n"
         + "\t--dry-run                                 \t\t Validates configuration\r\n"
         + "\t--log-level=<trace|info|warn|error|fatal> \t\t Log Level [default: Error]\r\n"
-        + "\t--prometheus=<true|false>                 "
-        + "\t\t Enable prometheus metrics [default: false]\r\n"
         + "\t--zone                                    "
         + "\t\t Zone for log (string) [default: dev]\r\n"
         + "\t--region                                  "
@@ -137,7 +138,6 @@ public class CommonUtils {
         + "\t--secrets-volume                          "
         + "\t\t Secrets Volume Path from project root directory (string) [default: secrets]\r\n"
         + "\r\nEnv vars: \r\n"
-        + "\tPROMETHEUS=<true|false> \r\n"
         + "\tZONE \r\n"
         + "\tREGION \r\n"
         + "\tSECRETS_VOLUME \r\n");
