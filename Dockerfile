@@ -24,11 +24,11 @@ RUN --mount=type=cache,target=/root/.m2,rw mvn clean package -DskipTests --no-tr
 FROM  azul/zulu-openjdk-alpine:11.0.10-jre AS release
 WORKDIR /app
 
-# Create the ngsa user so we can run the app as non-root under ngsa
-RUN addgroup -g 4120 ngsa && \
-    adduser -u 4120 -G ngsa -h /home/ngsa -D ngsa
+# Create the app user so we can run the app as non-root under app
+RUN addgroup -g 4120 app && \
+    adduser -u 4120 -G app -h /home/app -D app
 
-USER ngsa
+USER app
 
 COPY --from=dependencies /app/target/java-app.jar app.jar
 EXPOSE 8080
