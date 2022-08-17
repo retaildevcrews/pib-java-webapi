@@ -1,3 +1,3 @@
 <configuration>
-    <logger name="com.cse.app" level="warn" />
+    <logger name="com.pib.japp" level="warn" />
 </configuration>

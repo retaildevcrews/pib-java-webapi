@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-package com.cse.app.controllers;
+package com.pib.japp.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,16 +16,13 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @ExtendWith(SpringExtension.class)
 @PropertySource("classpath:application.properties")
 @SpringBootTest
-public class HealthzControllerTest {
-  @Autowired private WebTestClient webClient;
+public class ReadyzControllerTest {
+	@Autowired
+	private WebTestClient webClient;
 
-  @Test
-  public void testHealthz() {
-    webClient.get().uri("/healthz").exchange().expectStatus().isOk();
-  }
+	@Test
+	public void testHealthz() {
+		webClient.get().uri("/readyz").exchange().expectStatus().isOk();
+	}
 
-  @Test
-  public void testHealthzIeTf() {
-    webClient.get().uri("/healthz/ietf").exchange().expectStatus().isOk();
-  }
 }
