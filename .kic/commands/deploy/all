@@ -1,4 +1,6 @@
 #!/bin/bash
 
+kic deploy monitoring
+kic deploy jumpbox
 kic deploy java-app
 kic deploy webv

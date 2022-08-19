@@ -1,7 +1,3 @@
-###
-# Cluster commands
-###
-
 commands:
 - name: cluster
   short: Local cluster commands

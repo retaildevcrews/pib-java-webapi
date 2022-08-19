@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$REPO_BASE/java-app" || exit
+cd "$PIB_BASE/java-app" || exit
 
 if [ ! -d deploy/app/webv ]
 then

@@ -7,7 +7,7 @@ commands:
   short: Deploy local apps
   scriptCommands:
     - name: all
-      short: Deploy bootstrap, Java-App and webv
+      short: Deploy monitoring, Java-App, and webv
       path: deploy/all
 
     - name: java-app
@@ -18,9 +18,9 @@ commands:
       short: Deploy WebValidate for Java-App
       path: deploy/webv
 
-    - name: bootstrap
-      short: Deploy Heartbeat, Fluent Bit, Grafana, Prometheus
-      path: deploy/bootstrap
+    - name: monitoring
+      short: Deploy Fluent Bit, Grafana, Prometheus
+      path: deploy/monitoring
 
     - name: jumpbox
       short: Deploy a jumpbox
