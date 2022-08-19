@@ -15,7 +15,7 @@
 				"parameters": [{
 					"name": "size",
 					"in": "path",
-					"description": "Size of Beanchmark data.<br><br>`valid: 0 < size <= 1024*1024`<br><br>example: 23",
+					"description": "Size of Benchmark data.<br><br>`valid: 0 < size <= 1024*1024`<br><br>example: 23",
 					"required": true,
 					"style": "simple",
 					"explode": false,
