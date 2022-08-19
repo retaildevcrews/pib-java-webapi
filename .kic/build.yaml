@@ -1,0 +1,19 @@
+###
+# build commands
+###
+
+commands:
+- name: build
+  short: Build local apps
+  scriptCommands:
+    - name: all
+      short: Build Java-App and WebV
+      path: build/all
+
+    - name: java-app
+      short: Build Java-App
+      path: build/app
+
+    - name: webv
+      short: Build WebValidate for Java-App
+      path: build/webv

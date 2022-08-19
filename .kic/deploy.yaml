@@ -1,0 +1,27 @@
+###
+# deploy commands
+###
+
+commands:
+- name: deploy
+  short: Deploy local apps
+  scriptCommands:
+    - name: all
+      short: Deploy bootstrap, Java-App and webv
+      path: deploy/all
+
+    - name: java-app
+      short: Deploy Java-App
+      path: deploy/app
+
+    - name: webv
+      short: Deploy WebValidate for Java-App
+      path: deploy/webv
+
+    - name: bootstrap
+      short: Deploy Heartbeat, Fluent Bit, Grafana, Prometheus
+      path: deploy/bootstrap
+
+    - name: jumpbox
+      short: Deploy a jumpbox
+      path: deploy/jumpbox

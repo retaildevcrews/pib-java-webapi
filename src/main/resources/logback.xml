@@ -1,4 +1,3 @@
 <configuration>
-    <logger name="com.azure.data.cosmos" level="error"/>
-    <logger name="com.cse.ngsa" level="warn" />
+    <logger name="com.pib.japp" level="warn" />
 </configuration>

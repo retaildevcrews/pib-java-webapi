@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd "$REPO_BASE/java-app" || exit
+
+# build and push the local image
+DOCKER_BUILDKIT=1 docker build . -t k3d-registry.localhost:5500/java-app:local
+docker push k3d-registry.localhost:5500/java-app:local
+
+if [ "$1" == "--deploy" ]
+then
+    kic deploy java-app
+fi
