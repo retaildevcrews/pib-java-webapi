@@ -1,4 +1,0 @@
-#!/bin/bash
-
-kic deploy java-app
-kic deploy webv
