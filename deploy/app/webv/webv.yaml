@@ -62,7 +62,7 @@ spec:
           - --server
           - http://java-app:8080
           - --files
-          - benchmark.json
+          - load.json
           - --zone
           - dev
           - --region

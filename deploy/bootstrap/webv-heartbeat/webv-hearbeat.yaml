@@ -58,7 +58,7 @@ spec:
           - --server
           - http://heartbeat:8080
           - --files
-          - heartbeat-benchmark.json
+          - heartbeat-load.json
           - --zone
           - dev
           - --region
