@@ -11,6 +11,8 @@ scriptCommands:
   path: sync
 
 commands:
+- name: env
+  hidden: true
 - name: new
   hidden: true
 - name: targets
