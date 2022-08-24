@@ -18,6 +18,6 @@ commands:
       short: Check Flux service
       path: check/flux
 
-  commands
+  commands:
     - name: imdb
       hidden: true
