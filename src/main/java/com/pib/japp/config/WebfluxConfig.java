@@ -5,6 +5,8 @@ package com.pib.japp.config;
 
 import com.pib.japp.utils.UrlPrefixTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.reactive.WebFluxProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
@@ -31,5 +33,10 @@ public class WebfluxConfig implements WebFluxConfigurer {
         .resourceChain(false)
         .addTransformer(transformer); // Adding urlPrefix transformer
 
+  }
+  
+  @Bean
+  public WebFluxProperties webFluxProperties() {
+    return new WebFluxProperties();
   }
 }
