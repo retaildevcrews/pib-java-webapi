@@ -4,7 +4,7 @@ deployments:
     target: dev
     values:
       app: java-app
-      name: java-app
+      containerArgs: ' '
       namespace: java-app
       workspace: java-app
       image: ghcr.io/cse-labs/java-app:latest
