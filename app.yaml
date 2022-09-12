@@ -10,7 +10,7 @@ livenessProbe: /healthz
 memoryLimit: 512Mi
 memoryRequest: 512Mi
 namespace: java-app
-nodePort: 30080
+nodePort: {{nodePort}}
 port: 8080
 readinessProbe: /readyz
 targets: []
