@@ -15,8 +15,8 @@ public class IndexWebFilter implements WebFilter {
   @Override
   public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
     String uriPath = exchange.getRequest().getURI().getPath();
-    if (uriPath.equals("/") || uriPath.equals("")) {
-      return chain.filter(exchange.mutate().request(exchange.getRequest().mutate().path("/index.html").build()).build());
+    if (uriPath.equals("/java-app") || uriPath.equals("/java-app/")) {
+      return chain.filter(exchange.mutate().request(exchange.getRequest().mutate().path("/java-app/index.html").build()).build());
     }
 
     return chain.filter(exchange);
