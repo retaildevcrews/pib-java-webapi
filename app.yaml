@@ -6,12 +6,12 @@ cpuRequest: 300m
 environment: dev
 image: ghcr.io/cse-labs/java-app:latest
 ingressPrefix: /java-app/
-livenessProbe: /healthz
+livenessProbe: /java-app/healthz
 memoryLimit: 512Mi
 memoryRequest: 512Mi
 namespace: java-app
 nodePort: {{nodePort}}
 port: 8080
-readinessProbe: /readyz
+readinessProbe: /java-app/readyz
 targets: []
 template: pib-service
