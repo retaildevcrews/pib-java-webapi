@@ -1,19 +1,17 @@
+
+app: java-app
+containerArgs: ' '
+cpuLimit: 500m
+cpuRequest: 300m
+environment: dev
+image: ghcr.io/cse-labs/java-app:latest
+ingressPrefix: /java-app/
+livenessProbe: /healthz
+memoryLimit: 512Mi
+memoryRequest: 512Mi
+namespace: java-app
+nodePort: 30080
+port: 8080
+readinessProbe: /readyz
+targets: []
 template: pib-service
-deployments:
-  dev:
-    target: dev
-    values:
-      app: java-app
-      containerArgs: ' '
-      namespace: java-app
-      workspace: java-app
-      image: ghcr.io/cse-labs/java-app:latest
-      targets: []
-      port: 8080
-      nodePort: 30080
-      cpuLimit: 500m
-      memoryLimit: 512Mi
-      cpuRequest: 300m
-      memoryRequest: 512Mi
-      readinessProbe: /readyz
-      livenessProbe: /healthz
