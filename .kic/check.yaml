@@ -18,8 +18,8 @@ commands:
       short: Check Flux service
       path: check/flux
 
-  commands:
-    - name: heartbeat
-      hidden: true
-    - name: imdb
-      hidden: true
+  # commands:
+  #   - name: heartbeat
+  #     hidden: true
+  #   - name: imdb
+  #     hidden: true
