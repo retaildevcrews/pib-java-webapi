@@ -13,4 +13,4 @@ resources:
   - grafana/datasource.yaml
   - grafana/deployment.yaml
   - grafana/dashboards/app.yaml
-  - grafana/dashboards/dotnet.yaml
+  - grafana/dashboards/java.yaml
