@@ -22,9 +22,3 @@ data:
       orgId: 1
       type: file
       disableDeletion: false
-    - name: dotnet
-      options:
-        path: /var/lib/grafana/dashboards/dotnet
-      orgId: 1
-      type: file
-      disableDeletion: false
