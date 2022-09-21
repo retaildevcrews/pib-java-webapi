@@ -56,8 +56,6 @@ spec:
             mountPath: /var/lib/grafana/dashboards/java-app
           - name: dashboards-java
             mountPath: /var/lib/grafana/dashboards/java
-          - name: dashboards-dotnet
-            mountPath: /var/lib/grafana/dashboards/dotnet
       volumes:
         - name: grafana-storage
           hostPath:
