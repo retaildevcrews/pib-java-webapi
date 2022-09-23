@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  path: ./java-app/kic-deploy/flux
+  path: ./apps/java-app/kic-deploy/flux
   prune: true
   sourceRef:
     kind: GitRepository
