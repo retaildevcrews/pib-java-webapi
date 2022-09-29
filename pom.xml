@@ -18,7 +18,7 @@
   </reporting>
   <groupId>com.pib</groupId>
   <artifactId>java-app</artifactId>
-  <version>1.1.1</version>
+  <version>1.0.0</version>
   <name>java-app</name>
   <description>Sample Java Application with Spring Boot</description>
   <properties>
