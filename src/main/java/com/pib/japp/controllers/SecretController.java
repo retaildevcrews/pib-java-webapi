@@ -5,7 +5,8 @@ package com.pib.japp.controllers;
 
 import com.pib.japp.services.volumes.VolumeConfigService;
 import com.pib.japp.utils.InvalidParameterResponses;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.text.MessageFormat;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,9 +21,10 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping(path = "/api/secret")
-public class SecretsController {
+@Tag(name = "Secret")
+public class SecretController {
 
-  private static final Logger logger = LogManager.getLogger(SecretsController.class);
+  private static final Logger logger = LogManager.getLogger(SecretController.class);
 
   @Autowired
   private VolumeConfigService volumeConfigService;
@@ -32,10 +34,11 @@ public class SecretsController {
 
   /**
    * Get Secret from volume.
-   * 
+   *
    * @return secret value
    */
   @GetMapping(value = "/{key}")
+  @Operation(summary = "Returns the Key Vault secret mounted in the secrets volume")
   public Mono<ResponseEntity<String>> getSecret(
       @ApiParam(value = "Returns the Key Vault secret mounted in the secrets volume", example = "Database", required = true) @PathVariable("key") String key) {
 
@@ -43,7 +46,7 @@ public class SecretsController {
       String secret = volumeConfigService.getSecretFromFile(key);
       return Mono.justOrEmpty(ResponseEntity.ok(secret));
     } catch (Exception ex) {
-      logger.warn(MessageFormat.format("SecretsControllerException {0}", ex.getMessage()));
+      logger.warn(MessageFormat.format("SecretControllerException {0}", ex.getMessage()));
       logger.error("Invalid secret key");
       return Mono
           .just(ResponseEntity.status(HttpStatus.NOT_FOUND).body("secret not found"));

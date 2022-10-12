@@ -6,8 +6,8 @@ package com.pib.japp.controllers;
 import com.pib.japp.Constants;
 import com.pib.japp.utils.InvalidParameterResponses;
 import com.pib.japp.utils.ParameterValidator;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +23,16 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping(path = "/api/benchmark", produces = {MediaType.TEXT_PLAIN_VALUE,
     MediaType.APPLICATION_PROBLEM_JSON_VALUE})
-@Api(tags = "Benchmark")
+@Tag(name = "Benchmark")
 public class BenchmarkController {
-  
+
   private static final Logger logger = LogManager.getLogger(BenchmarkController.class);
-  
+
   private final String benchmarkString;
-  
+
   @Autowired
   ParameterValidator validator;
-  
+
   @Autowired
   InvalidParameterResponses invalidParameterResponses;
 
@@ -44,10 +44,9 @@ public class BenchmarkController {
 
   /** getBenchmark. */
   @GetMapping(value = "/{size}")
+  @Operation(summary = "Returns a string value of benchmark data")
   @SuppressWarnings({"squid:S2629", "squid:S1612"})
   public Mono<ResponseEntity<String>> getBenchmark(
-      @ApiParam(value = "The size of the benchmark data ( 0 < size <= 1MB )",
-                example = "214", required = true)
       @PathVariable("size")
       String benchmarkSizeStr,
       ServerHttpRequest request

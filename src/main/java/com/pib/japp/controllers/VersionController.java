@@ -5,6 +5,8 @@ package com.pib.japp.controllers;
 
 import com.pib.japp.config.BuildConfig;
 import com.pib.japp.utils.CommonUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 @RestController
+@Tag(name = "Version")
 public class VersionController {
 
   private static final Logger logger = LogManager.getLogger(VersionController.class);
@@ -36,12 +39,13 @@ public class VersionController {
    * Returns the application build version.
    *
    * @param response ServerHttpResponse passed into the alternate version handler by Spring
-   * @return Mono{@literal <}Map{@literal <}String, 
+   * @return Mono{@literal <}Map{@literal <}String,
    *      String{@literal <}{@literal <} container the build number
   */
   @GetMapping(name = "Java-App Version Controller",
       value = "/version",
       produces = MediaType.TEXT_PLAIN_VALUE)
+  @Operation(summary = "Returns the application version")
   public Mono<String> version(ServerHttpResponse response) {
     try {
       response.setStatusCode(HttpStatus.OK);
