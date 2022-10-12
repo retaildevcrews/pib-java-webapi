@@ -40,6 +40,7 @@ public class SecretController {
   @GetMapping(value = "/{key}")
   @Operation(summary = "Returns the Key Vault secret mounted in the secrets volume")
   public Mono<ResponseEntity<String>> getSecret(
+      @PathVariable("key") String key) {
 
     try {
       String secret = volumeConfigService.getSecretFromFile(key);
