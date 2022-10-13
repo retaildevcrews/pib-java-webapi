@@ -5,6 +5,9 @@ package com.pib.japp.controllers;
 
 import com.pib.japp.utils.CommonUtils;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,6 +44,8 @@ public class ReadyzController {
    */
   @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
   @Operation(summary = "Returns a plain text ready status")
+  @ApiResponse(responseCode = "200", description = "Success",
+               content = @Content(schema = @Schema(type = "string")))
   public Mono<ResponseEntity<String>> readinessCheck() {
     logger.info("readiness endpoint");
     return Mono.just(ResponseEntity.ok("ready"));

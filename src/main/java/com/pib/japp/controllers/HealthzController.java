@@ -8,6 +8,9 @@ import com.pib.japp.config.BuildConfig;
 import com.pib.japp.health.ietf.IeTfStatus;
 import com.pib.japp.utils.CommonUtils;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +58,8 @@ public class HealthzController {
    */
   @GetMapping(value = "", produces = MediaType.TEXT_PLAIN_VALUE)
   @Operation(summary = "Returns a plain text health status (pass, warn, or fail)")
+  @ApiResponse(responseCode = "200", description = "Success",
+               content = @Content(schema = @Schema(type = "string")))
   public Mono<ResponseEntity<String>> healthCheck() {
     logger.info("healthz endpoint");
 
@@ -77,6 +82,8 @@ public class HealthzController {
    */
   @GetMapping(value = "/ietf", produces = "application/health+json")
   @Operation(summary = "Returns an IETF (draft) health+json representation of the full Health Check")
+  @ApiResponse(responseCode = "200", description = "Success",
+              content = @Content(schema = @Schema(type = "LinkedHashMap")))
   public Mono<ResponseEntity<LinkedHashMap<String, Object>>>  ietfHealthCheck() {
     if (logger.isInfoEnabled()) {
       logger.info("healthz ietf endpoint");

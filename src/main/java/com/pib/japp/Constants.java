@@ -7,7 +7,7 @@ package com.pib.japp;
  * Constants.
  */
 public final class Constants {
-  public static final Integer MAX_BENCH_STR_SIZE = 1024 * 1024;
+  public static final Integer MAX_BENCHMARK_SIZE = 1024 * 1024;
 
   public static final String WEB_INSTANCE_ROLE = "WEBSITE_ROLE_INSTANCE_ID";
   public static final String WEB_INSTANCE_ROLE_ID = "WEBSITE_ROLE_INSTANCE_ID";
@@ -19,7 +19,7 @@ public final class Constants {
   public static final String SECRETS_VOLUME_EMPTY = "Volume is empty.";
 
 
- 
+
   private Constants() {
     // private constructor to hide public constructor
   }

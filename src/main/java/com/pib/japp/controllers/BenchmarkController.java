@@ -7,6 +7,11 @@ import com.pib.japp.Constants;
 import com.pib.japp.utils.InvalidParameterResponses;
 import com.pib.japp.utils.ParameterValidator;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,22 +44,27 @@ public class BenchmarkController {
   /** BenchmarkController constructor. */
   public BenchmarkController() {
     var initialStr = "0123456789ABCDEF";
-    benchmarkString = initialStr.repeat(Constants.MAX_BENCH_STR_SIZE / initialStr.length() + 1);
+    benchmarkString = initialStr.repeat(Constants.MAX_BENCHMARK_SIZE / initialStr.length() + 1);
   }
 
   /** getBenchmark. */
   @GetMapping(value = "/{size}")
   @Operation(summary = "Returns a string value of benchmark data")
   @SuppressWarnings({"squid:S2629", "squid:S1612"})
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200",
+                 content = @Content(schema = @Schema(type = "string"))),
+    @ApiResponse(responseCode = "400", description = "Bad Request")
+  })
   public Mono<ResponseEntity<String>> getBenchmark(
+      @Parameter(description = "size of return")
       @PathVariable("size")
-      String benchmarkSizeStr,
+      int benchmarkSize,
       ServerHttpRequest request
   ) {
 
-    if (Boolean.TRUE == validator.isValidBenchmarkSize(benchmarkSizeStr, Constants.MAX_BENCH_STR_SIZE)) {
+    if (Boolean.TRUE == validator.isValidBenchmarkSize(benchmarkSize, Constants.MAX_BENCHMARK_SIZE)) {
 
-      int benchmarkSize = Integer.parseInt(benchmarkSizeStr);
       return Mono.justOrEmpty(ResponseEntity.ok(
           benchmarkString.substring(0, benchmarkSize)));
 
