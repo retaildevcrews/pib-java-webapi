@@ -49,8 +49,12 @@ public class SecretController {
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200",
                  content = @Content(schema = @Schema(type = "string"))),
-    @ApiResponse(responseCode = "404", description = "Not Found"),
-    @ApiResponse(responseCode = "500", description = "Server Error")
+    @ApiResponse(responseCode = "404",
+                 description = "Not Found",
+                 content = @Content(schema = @Schema(hidden = true))),
+    @ApiResponse(responseCode = "500",
+                 description = "Server Error",
+                 content = @Content(schema = @Schema(hidden = true)))
   })
   public Mono<ResponseEntity<String>> getSecret(
       @Parameter(description = "key for secret")

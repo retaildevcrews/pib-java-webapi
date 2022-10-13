@@ -54,7 +54,9 @@ public class BenchmarkController {
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200",
                  content = @Content(schema = @Schema(type = "string"))),
-    @ApiResponse(responseCode = "400", description = "Bad Request")
+    @ApiResponse(responseCode = "400",
+                 description = "Bad Request",
+                 content = @Content(schema = @Schema(hidden = true)))
   })
   public Mono<ResponseEntity<String>> getBenchmark(
       @Parameter(description = "size of return")
