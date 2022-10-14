@@ -3,10 +3,9 @@
                 <head>
                     <meta charset="UTF-8">
                     <title>Swagger UI</title>
-                    <link rel="stylesheet" type="text/css" href="{{url-prefix}}/webjars/springfox-swagger-ui/springfox.css?v=3.0.0-SNAPSHOT" >
-                    <link rel="stylesheet" type="text/css" href="{{url-prefix}}/webjars/springfox-swagger-ui/swagger-ui.css?v=3.0.0-SNAPSHOT" >
-                    <link rel="icon" type="image/png" href="{{url-prefix}}/webjars/springfox-swagger-ui/favicon-32x32.png?v=3.0.0-SNAPSHOT" sizes="32x32" />
-                    <link rel="icon" type="image/png" href="{{url-prefix}}/webjars/springfox-swagger-ui/favicon-16x16.png?v=3.0.0-SNAPSHOT" sizes="16x16" />
+                    <link rel="stylesheet" type="text/css" href="{{url-prefix}}/webjars/swagger-ui/swagger-ui.css?v=3.0.0-SNAPSHOT" >
+                    <link rel="icon" type="image/png" href="{{url-prefix}}/webjars/swagger-ui/favicon-32x32.png?v=3.0.0-SNAPSHOT" sizes="32x32" />
+                    <link rel="icon" type="image/png" href="{{url-prefix}}/webjars/swagger-ui/favicon-16x16.png?v=3.0.0-SNAPSHOT" sizes="16x16" />
                     <link rel="icon" type="image/png"
                     href="{{url-prefix}}/webjars/favicon-32x32.png" sizes="32x32" />
                     <link rel="icon" type="image/png"
@@ -38,16 +37,17 @@
                     <div id="swagger-ui"></div>
 
 
-                    <script src="{{url-prefix}}/webjars/springfox-swagger-ui/swagger-ui-bundle.js?v=3.0.0-SNAPSHOT"> </script>
-                    <script src="{{url-prefix}}/webjars/springfox-swagger-ui/swagger-ui-standalone-preset.js?v=3.0.0-SNAPSHOT"> </script>
-                    <script src="{{url-prefix}}/webjars/springfox-swagger-ui/springfox.js?v=3.0.0-SNAPSHOT"> </script>
+                    <script src="{{url-prefix}}/webjars/swagger-ui/swagger-ui-bundle.js?v=3.0.0-SNAPSHOT"> </script>
+                    <script src="{{url-prefix}}/webjars/swagger-ui/swagger-ui-standalone-preset.js?v=3.0.0-SNAPSHOT"> </script>
+                    <script src="{{url-prefix}}/webjars/swagger-ui/springfox.js?v=3.0.0-SNAPSHOT"> </script>
                     <script>
                     window.onload = function() {
                         // begin Swagger UI call region
                         window.ui = SwaggerUIBundle({
-                            url: '{{url-prefix}}/swagger.json',
+                            url: '{{url-prefix}}/v3/api-docs',
                             dom_id: '#swagger-ui',
                             deepLinking: true,
+                            tagsSorter : "alpha",
                             validatorUrl: null,
                             presets: [
                             SwaggerUIBundle.presets.apis,

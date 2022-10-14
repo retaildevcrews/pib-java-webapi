@@ -7,6 +7,11 @@ import com.pib.japp.Constants;
 import com.pib.japp.config.BuildConfig;
 import com.pib.japp.health.ietf.IeTfStatus;
 import com.pib.japp.utils.CommonUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -28,6 +33,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping(path = "/healthz")
+@Tag(name = "Healthz")
 public class HealthzController {
 
   private static final Logger logger =   LogManager.getLogger(HealthzController.class);
@@ -51,6 +57,9 @@ public class HealthzController {
    * @return responseEntity with status information for overall application health.
    */
   @GetMapping(value = "", produces = MediaType.TEXT_PLAIN_VALUE)
+  @Operation(summary = "Returns a plain text health status (pass, warn, or fail)")
+  @ApiResponse(responseCode = "200", description = "Success",
+               content = @Content(schema = @Schema(type = "string")))
   public Mono<ResponseEntity<String>> healthCheck() {
     logger.info("healthz endpoint");
 
@@ -59,7 +68,7 @@ public class HealthzController {
       String healthStatus = getOverallHealthStatus(data);
       int resCode = healthStatus.equals(IeTfStatus.FAIL.name()) ? HttpStatus.SERVICE_UNAVAILABLE.value()
           : HttpStatus.OK.value();
-      return new ResponseEntity<>(healthStatus, HttpStatus.valueOf(resCode));
+      return new ResponseEntity<>(healthStatus.toLowerCase(), HttpStatus.valueOf(resCode));
     });
   }
 
@@ -72,6 +81,9 @@ public class HealthzController {
    *        returned with status information for overall execution and discrete calls.
    */
   @GetMapping(value = "/ietf", produces = "application/health+json")
+  @Operation(summary = "Returns an IETF (draft) health+json representation of the full Health Check")
+  @ApiResponse(responseCode = "200", description = "Success",
+              content = @Content(schema = @Schema(type = "LinkedHashMap")))
   public Mono<ResponseEntity<LinkedHashMap<String, Object>>>  ietfHealthCheck() {
     if (logger.isInfoEnabled()) {
       logger.info("healthz ietf endpoint");
@@ -93,7 +105,7 @@ public class HealthzController {
     return resultsMono.map(data -> {
       ieTfResult.put(STATUS_TEXT, getOverallHealthStatus(data));
       Map<String, Object> resultsDictionary = convertResultsListToDictionary(data);
-      
+
       ieTfResult.put("checks", resultsDictionary);
       return ieTfResult;
     }).map(result -> ResponseEntity.ok().body(result));

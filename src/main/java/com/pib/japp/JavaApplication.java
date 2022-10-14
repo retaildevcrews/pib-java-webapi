@@ -4,17 +4,18 @@
 package com.pib.japp;
 
 import com.pib.japp.utils.CommonUtils;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.reactive.config.EnableWebFlux;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableWebFlux
-@EnableSwagger2
+@OpenAPIDefinition(info = @Info(title = "Java-App Web API", version = "1.0"))
 @ComponentScan("com.pib.japp")
 public class JavaApplication {
   private static final Logger logger =   LogManager.getLogger(JavaApplication.class);

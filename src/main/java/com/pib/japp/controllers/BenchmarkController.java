@@ -6,8 +6,13 @@ package com.pib.japp.controllers;
 import com.pib.japp.Constants;
 import com.pib.japp.utils.InvalidParameterResponses;
 import com.pib.japp.utils.ParameterValidator;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,39 +28,45 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping(path = "/api/benchmark", produces = {MediaType.TEXT_PLAIN_VALUE,
     MediaType.APPLICATION_PROBLEM_JSON_VALUE})
-@Api(tags = "Benchmark")
+@Tag(name = "Benchmark")
 public class BenchmarkController {
-  
+
   private static final Logger logger = LogManager.getLogger(BenchmarkController.class);
-  
+
   private final String benchmarkString;
-  
+
   @Autowired
   ParameterValidator validator;
-  
+
   @Autowired
   InvalidParameterResponses invalidParameterResponses;
 
   /** BenchmarkController constructor. */
   public BenchmarkController() {
     var initialStr = "0123456789ABCDEF";
-    benchmarkString = initialStr.repeat(Constants.MAX_BENCH_STR_SIZE / initialStr.length() + 1);
+    benchmarkString = initialStr.repeat(Constants.MAX_BENCHMARK_SIZE / initialStr.length() + 1);
   }
 
   /** getBenchmark. */
   @GetMapping(value = "/{size}")
+  @Operation(summary = "Returns a string value of benchmark data")
   @SuppressWarnings({"squid:S2629", "squid:S1612"})
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "200",
+                 content = @Content(schema = @Schema(type = "string"))),
+    @ApiResponse(responseCode = "400",
+                 description = "Bad Request",
+                 content = @Content(schema = @Schema(hidden = true)))
+  })
   public Mono<ResponseEntity<String>> getBenchmark(
-      @ApiParam(value = "The size of the benchmark data ( 0 < size <= 1MB )",
-                example = "214", required = true)
+      @Parameter(description = "size of return")
       @PathVariable("size")
-      String benchmarkSizeStr,
+      int benchmarkSize,
       ServerHttpRequest request
   ) {
 
-    if (Boolean.TRUE == validator.isValidBenchmarkSize(benchmarkSizeStr, Constants.MAX_BENCH_STR_SIZE)) {
+    if (Boolean.TRUE == validator.isValidBenchmarkSize(benchmarkSize, Constants.MAX_BENCHMARK_SIZE)) {
 
-      int benchmarkSize = Integer.parseInt(benchmarkSizeStr);
       return Mono.justOrEmpty(ResponseEntity.ok(
           benchmarkString.substring(0, benchmarkSize)));
 

@@ -3,7 +3,7 @@
   [
     {"path":"/version","perfTarget":{"category":"static"}},
     {"path":"/index.html","perfTarget":{"category":"static"},"validation":{"contentType":"text/html","contains":["<title>Swagger UI</title>","<div id=\"swagger-ui\">"]}},
-    {"path":"/swagger.json","perfTarget":{"category":"static"},"validation":{"jsonObject":[{"field":"openapi"},{"field":"info"},{"field":"paths"},{"field":"components"}]}},
+    {"path":"/v3/api-docs","perfTarget":{"category":"static"},"validation":{"jsonObject":[{"field":"openapi"},{"field":"info"},{"field":"paths"},{"field":"components"}]}},
     {"path":"/api/benchmark/1","perfTarget":{"category":"api"},"validation":{"contentType":"text/plain","exactMatch":"0"}},
     {"path":"/api/benchmark/16","perfTarget":{"category":"api"},"validation":{"contentType":"text/plain","exactMatch":"0123456789ABCDEF"}},
     {"path":"/api/benchmark/32","perfTarget":{"category":"api"},"validation":{"contentType":"text/plain","exactMatch":"0123456789ABCDEF0123456789ABCDEF"}},

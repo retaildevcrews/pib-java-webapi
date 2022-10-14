@@ -28,10 +28,6 @@ public class WebfluxConfig implements WebFluxConfigurer {
         .addResourceLocations("classpath:/static/")
         .resourceChain(false)
         .addTransformer(transformer); // Adding urlPrefix transformer
-    registry.addResourceHandler("/swagger.json**")
-        .addResourceLocations("classpath:/static/")
-        .resourceChain(false)
-        .addTransformer(transformer); // Adding urlPrefix transformer
 
   }
 

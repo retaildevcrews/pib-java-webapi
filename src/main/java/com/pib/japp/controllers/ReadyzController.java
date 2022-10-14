@@ -4,6 +4,11 @@
 package com.pib.japp.controllers;
 
 import com.pib.japp.utils.CommonUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +23,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping(path = "/readyz")
+@Tag(name = "Readyz")
 public class ReadyzController {
 
   private static final Logger logger = LogManager.getLogger(ReadyzController.class);
@@ -33,10 +39,13 @@ public class ReadyzController {
 
   /**
    * readinessCheck.
-   * 
+   *
    * @return application readiness
    */
   @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
+  @Operation(summary = "Returns a plain text ready status")
+  @ApiResponse(responseCode = "200", description = "Success",
+               content = @Content(schema = @Schema(type = "string")))
   public Mono<ResponseEntity<String>> readinessCheck() {
     logger.info("readiness endpoint");
     return Mono.just(ResponseEntity.ok("ready"));

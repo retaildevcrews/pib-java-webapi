@@ -4,7 +4,6 @@
 package com.pib.japp.utils;
 
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 /** ParameterValidator. */
 @Component
@@ -12,7 +11,7 @@ public class ParameterValidator {
 
   /**
    * This method will return true if input is int and false otherwise.
-   * 
+   *
    * @param s input string to test as an int
    * @return boolean
    */
@@ -28,19 +27,12 @@ public class ParameterValidator {
     return isValidInteger;
   }
 
-  /** isValidRating. */
-  public Boolean isValidBenchmarkSize(String benchmarkSizeStr, int maxBenchStrSize) {
-    if (!StringUtils.isEmpty(benchmarkSizeStr)) {
-      try {
-        int benchmarkSize = Integer.parseInt(benchmarkSizeStr);
-        if (benchmarkSize < 1 || benchmarkSize > maxBenchStrSize) {
-          return false;
-        }
-      } catch (Exception ex) {
-        return false;
-      }
+  /** isValidBenchmarkSize. */
+  public Boolean isValidBenchmarkSize(int benchmarkSize, int maxBenchmarkSize) {
+    if (benchmarkSize < 1 || benchmarkSize > maxBenchmarkSize) {
+      return false;
     }
     return true;
   }
- 
+
 }
